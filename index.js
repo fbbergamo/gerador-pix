@@ -1,7 +1,12 @@
 var express = require('express')
-  , bodyParser = require('body-parser');
+  , bodyParser = require('body-parser')
+  , helmet = require('helmet')
 
+const pino = require('pino-http')()
 const app = express();
+
+app.use(helmet());
+app.use(pino)
 
 app.use(bodyParser.json());
 
@@ -9,7 +14,37 @@ const port = process.env.PORT || 8000;
 const { Merchant } = require('steplix-emv-qrcps');
 const { Constants } = Merchant;
 
-app.post('/emvqr-static', (req, res) => {
+var cors = require('cors')
+
+var allowlist = ['http://localhost', 'https://gerador-pix.herokuapp.com']
+var corsOptionsDelegate = function (req, callback) {
+  var corsOptions;
+  if (allowlist.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false } // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+}
+
+
+app.post('/emvqr-static', cors(corsOptionsDelegate), (req, res) => {
+  var { key, amount, name, reference } = req.body
+
+  if (key) {
+      res.json({ code: generate_qrcp(key, amount, name, reference)})
+  }
+  else {
+    res.json({ error: "Chave não presente"});
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Starting generate pix on port ${port}!`)
+});
+
+
+generate_qrcp = (key, amount, name, reference) => {
   emvqr = Merchant.buildEMVQR();
 
   emvqr.setPayloadFormatIndicator("01");
@@ -23,40 +58,33 @@ app.post('/emvqr-static', (req, res) => {
   paymentSystemSpecific.setGloballyUniqueIdentifier("BR.GOV.BCB.BRCODE");
   paymentSystemSpecific.addPaymentSystemSpecific("01", "1.0.0");
 
-  key = null;
 
-  if (req.body.key.includes("@")) {
-    key =  req.body.key.replace("@", " ").toUpperCase();
+  if (key.includes("@")) {
+    key =  key.replace("@", " ").toUpperCase();
   }
   else {
-    key =  req.body.key.toUpperCase();
+    key =  key.toUpperCase();
   }
 
   merchantAccountInformation.addPaymentNetworkSpecific("01", key);
 
   emvqr.addMerchantAccountInformation("26", merchantAccountInformation);
 
-  if (req.body.name) {
-    emvqr.setMerchantName(req.body.name.toUpperCase());
+  if (name) {
+    emvqr.setMerchantName(name.toUpperCase());
   }
 
-  if (req.body.amount) {
-    emvqr.setTransactionAmount(req.body.amount);
+  if (amount) {
+    emvqr.setTransactionAmount(amount);
   }
 
   const additionalDataFieldTemplate = Merchant.buildAdditionalDataFieldTemplate();
 
-  if (req.body.reference) {
-    additionalDataFieldTemplate.setReferenceLabel(req.body.reference);
+  if (reference) {
+    additionalDataFieldTemplate.setReferenceLabel(reference);
   }
 
   additionalDataFieldTemplate.addPaymentSystemSpecific("50", paymentSystemSpecific);
   emvqr.setAdditionalDataFieldTemplate(additionalDataFieldTemplate);
-
-  res.json({ code: emvqr.generatePayload() })
-
-});
-
-app.listen(port, () => {
-  console.log(`Starting generate pix on port ${port}!`)
-});
+  return emvqr.generatePayload();
+}
