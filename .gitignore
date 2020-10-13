@@ -2,3 +2,5 @@
 npm-debug.log
 .DS_Store
 /*.env
+website/node_modules
+public/dist

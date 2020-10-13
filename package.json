@@ -1,7 +1,6 @@
 {
   "name": "geradorpix",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,5 +15,11 @@
     "pino": "^6.7.0",
     "pino-http": "^5.3.0",
     "steplix-emv-qrcps": "0.0.8"
+  },
+  "keywords": [],
+  "description": "",
+  "devDependencies": {
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0"
   }
 }

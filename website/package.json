@@ -1,0 +1,31 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:dev": "webpack --config webpack.config.js --mode development"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^3.0.0",
+    "autoprefixer": "^10.0.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^4.3.0",
+    "mini-css-extract-plugin": "^1.0.0",
+    "postcss": "^8.1.1",
+    "postcss-loader": "^4.0.4",
+    "qrcode": "^1.4.4",
+    "style-loader": "^2.0.0",
+    "tailwindcss": "^1.8.13",
+    "webpack": "^4.44",
+    "webpack-cli": "^4.0.0"
+  }
+}

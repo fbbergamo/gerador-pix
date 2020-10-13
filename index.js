@@ -4,11 +4,12 @@ var express = require('express')
 
 const pino = require('pino-http')()
 const app = express();
+var path = require('path');
 
 app.use(helmet());
-app.use(pino)
-
+app.use(pino);
 app.use(bodyParser.json());
+app.use(express.static('public'))
 
 const port = process.env.PORT || 8000;
 const { Merchant } = require('steplix-emv-qrcps');
@@ -27,6 +28,9 @@ var corsOptionsDelegate = function (req, callback) {
   callback(null, corsOptions) // callback expects two parameters: error and options
 }
 
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/public/index.html'));
+});
 
 app.post('/emvqr-static', cors(corsOptionsDelegate), (req, res) => {
   var { key, amount, name, reference } = req.body
@@ -35,14 +39,14 @@ app.post('/emvqr-static', cors(corsOptionsDelegate), (req, res) => {
       res.json({ code: generate_qrcp(key, amount, name, reference)})
   }
   else {
-    res.json({ error: "Chave não presente"});
+    res.status(422);
+    res.json({ error: "Campo Key não presente"});
   }
 });
 
 app.listen(port, () => {
   console.log(`Starting generate pix on port ${port}!`)
 });
-
 
 generate_qrcp = (key, amount, name, reference) => {
   emvqr = Merchant.buildEMVQR();
