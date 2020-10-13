@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "postinstall": "npm install --prefix website && website/node_modules/.bin/webpack --mode production"
   },
   "author": "",
   "license": "ISC",
