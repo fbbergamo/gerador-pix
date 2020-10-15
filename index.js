@@ -9,7 +9,7 @@ var path = require('path');
 app.use(helmet());
 app.use(pino);
 app.use(bodyParser.json());
-app.use(express.static('public'))
+app.use(express.static('website/public'))
 
 const port = process.env.PORT || 8000;
 const { Merchant } = require('steplix-emv-qrcps');
@@ -29,7 +29,7 @@ var corsOptionsDelegate = function (req, callback) {
 }
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/public/index.html'));
+    res.sendFile(path.join(__dirname + '/website/public/index.html'));
 });
 
 app.post('/emvqr-static', cors(corsOptionsDelegate), (req, res) => {
