@@ -5,7 +5,7 @@ module.exports = {
     entry: path.resolve(__dirname, 'app.js'),
     devtool: 'inline-source-map',
     output: {
-        path: path.resolve(__dirname, '../public/dist'),
+        path: path.resolve(__dirname, 'public/dist'),
         filename: 'main.js',
     },
     module: {

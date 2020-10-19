@@ -33,10 +33,12 @@ app.get('/', function(req, res) {
 });
 
 app.post('/emvqr-static', cors(corsOptionsDelegate), (req, res) => {
-  var { key, amount, name, reference } = req.body
+  var { key, amount, name, reference, key_type } = req.body
 
   if (key) {
-      res.json({ code: generate_qrcp(key, amount, name, reference)})
+      var formated_key_value = formated_key(key, key_type);
+      var formated_amount_value = formated_amount(amount)
+      res.json({ code: generate_qrcp(formated_key_value, formated_amount_value, name, reference), key_type: key_type, key: key, amount: amount, formated_amount: formated_amount_value })
   }
   else {
     res.status(422);
@@ -45,9 +47,30 @@ app.post('/emvqr-static', cors(corsOptionsDelegate), (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Starting generate pix on port ${port}!`)
+  console.log(`Starting generate pix server on port ${port}!`)
 });
 
+
+formated_key = (key, key_type) => {
+  var rkey = key.toUpperCase()
+
+  if (key_type == 'Email') {
+    rkey =  rkey.replace("@", " ");
+  }
+
+  if (key_type == 'Telefone' || key_type == 'CNPJ' || key_type == "CPF") {
+    rkey = rkey.replace(/\D/g,'');
+  }
+
+  if (key_type == "Telefone") {
+    rkey = "+55" + rkey
+  }
+  return rkey
+}
+
+formated_amount = (amount) => {
+  return amount.replace(',','.').replace(' ','').replace("R$", '')
+}
 generate_qrcp = (key, amount, name, reference) => {
   emvqr = Merchant.buildEMVQR();
 
@@ -62,14 +85,6 @@ generate_qrcp = (key, amount, name, reference) => {
   paymentSystemSpecific.setGloballyUniqueIdentifier("BR.GOV.BCB.BRCODE");
   paymentSystemSpecific.addPaymentSystemSpecific("01", "1.0.0");
 
-
-  if (key.includes("@")) {
-    key =  key.replace("@", " ").toUpperCase();
-  }
-  else {
-    key =  key.toUpperCase();
-  }
-
   merchantAccountInformation.addPaymentNetworkSpecific("01", key);
 
   emvqr.addMerchantAccountInformation("26", merchantAccountInformation);
@@ -78,7 +93,7 @@ generate_qrcp = (key, amount, name, reference) => {
     emvqr.setMerchantName(name.toUpperCase());
   }
 
-  if (amount) {
+  if (amount && amount != '') {
     emvqr.setTransactionAmount(amount);
   }
 

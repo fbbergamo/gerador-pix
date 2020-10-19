@@ -1,10 +1,9 @@
-
 <!doctype html>
 <html class="no-js" lang="">
 
 <head>
   <meta charset="utf-8">
-  <title>Gerador de QRCode Pix Online</title>
+  <title>Gerar QrCode da Conta Pix - Online</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,7 +28,7 @@
       <header class="py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 class="text-3xl leading-9 font-bold text-white">
-            <a href="/">Gerador QrCode Pix Online</a>
+            <a href="/">Gerar QrCode da Conta Pix - Online</a>
           </h1>
         </div>
       </header>
@@ -47,17 +46,18 @@
                     <div class="grid grid-cols-3 gap-6">
                       <div class="col-span-3 sm:col-span-2">
                         <div>
-                          <label for="key" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Chave PIX</label>
+                          <label for="input-pix-key" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Chave PIX</label>
                           <div class="mt-1 relative rounded-md shadow-sm">
                             <div class="absolute inset-y-0 left-0 flex items-center">
-                              <select name="pix-type" aria-label="Tipo Chave Pix" class="js-change-pix-type form-select h-full py-0 pl-3 pr-8 border-transparent bg-transparent text-gray-500 sm:text-sm sm:leading-5">
+                              <select name="key_type" aria-label="Tipo Chave Pix" class="js-change-pix-type form-select h-full py-0 pl-3 pr-8 border-transparent bg-transparent text-gray-500 sm:text-sm sm:leading-5">
                                 <option>Telefone</option>
                                 <option>Email</option>
                                 <option>CPF</option>
+                                <option>CNPJ</option>
                                 <option>Outro</option>
                               </select>
                             </div>
-                            <input name="key" class="form-input block w-full pl-24 sm:text-sm sm:leading-5" placeholder="(11) 95555-5555" required=true  aria-label="Chave Pix" type="tel">
+                            <input name="key" id="input-pix-key" class="form-input block w-full pl-24 sm:text-sm sm:leading-5 js-pix-key-input" maxlength="60" inputmode="tel" placeholder="(11) 95555-5555" required=true  aria-label="Telefone Cadastrado no PIX, Somente números" type="tel">
                           </div>
                         </div>
                       </div>
@@ -65,14 +65,9 @@
 
                     <div class="mt-6">
                       <div>
-                        <label for="amount" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Valor para transferência</label>
+                        <label for="input-amount" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Valor para transferência (opcional)</label>
                         <div class="mt-1 relative rounded-md shadow-sm">
-                          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span class="text-gray-500 sm:text-sm sm:leading-5">
-                              R$
-                            </span>
-                          </div>
-                          <input inputmode="numeric" type="number"  min="0"  step="0.01"  id="amount" name="amount" class="form-input block w-1/4 pl-8 pr-12 sm:text-sm sm:leading-5" placeholder="0,00" aria-describedby="price-currency" aria-label="Valor padrão para transferência">
+                          <input inputmode="numeric" id="input-amount" name="amount" class="js-amount-currency-mask form-input block w-1/4 pr-12 sm:text-sm sm:leading-5" placeholder="0,00"  aria-label="Valor padrão para transferência">
                         </div>
                       </div>
                     </div>
@@ -92,12 +87,15 @@
                   QR Code
                 </label>
 
-                <div class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                  <div class="text-center js-qrcode-replace w-96">
+                <div class=" mt-2 px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                  <div class="object-center mx-auto js-qrcode-replace w-96">
                     <svg class="mx-auto w-16 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
                       <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                   </div>
+                  <div class="text-center block">
+                  <p class="js-qr-code-description"></p>
+                </div>
                 </div>
               </div>
             </div>
