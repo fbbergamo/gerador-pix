@@ -3,7 +3,7 @@ module.exports = {
     // removeDeprecatedGapUtilities: true,
     // purgeLayersByDefault: true,
   },
-  purge: ["../public/index.html"],
+  purge: ["public/index.html"],
   theme: {
     extend: {
       width: {
