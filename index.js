@@ -4,7 +4,9 @@ var express = require('express')
 
 const pino = require('pino-http')()
 const app = express();
+
 var path = require('path');
+var QRCode = require('qrcode')
 
 app.use(helmet());
 app.use(pino);
@@ -32,13 +34,23 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/website/public/index.html'));
 });
 
+const QR_CODE_SIZE = 400;
+
 app.post('/emvqr-static', cors(corsOptionsDelegate), (req, res) => {
   var { key, amount, name, reference, key_type } = req.body
 
   if (key) {
       var formated_key_value = formated_key(key, key_type);
       var formated_amount_value = formated_amount(amount)
-      res.json({ code: generate_qrcp(formated_key_value, formated_amount_value, name, reference), key_type: key_type, key: key, amount: amount, formated_amount: formated_amount_value })
+      var code = generate_qrcp(formated_key_value, formated_amount_value, name, reference)
+
+      QRCode.toDataURL(code, {width: QR_CODE_SIZE, height: QR_CODE_SIZE})
+      .then(qrcode => {
+        res.json({ qrcode_base64: qrcode, code: code, key_type: key_type, key: key, amount: amount, formated_amount: formated_amount_value })
+      })
+      .catch(err => {
+        console.error(err)
+      })
   }
   else {
     res.status(422);
@@ -101,6 +113,9 @@ generate_qrcp = (key, amount, name, reference) => {
 
   if (reference) {
     additionalDataFieldTemplate.setReferenceLabel(reference);
+  }
+  else {
+    additionalDataFieldTemplate.setReferenceLabel("***");
   }
 
   additionalDataFieldTemplate.addPaymentSystemSpecific("50", paymentSystemSpecific);

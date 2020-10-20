@@ -1,6 +1,5 @@
 require('./app.css');
 
-var QRCode = require('qrcode')
 import IMask from 'imask';
 import Number from 'imask/esm/masked/number';
 
@@ -56,24 +55,26 @@ function sendData( data ) {
   request.onload = function (body) {
     console.log(body.target.response);
     var response = JSON.parse(body.target.response)
-    QRCode.toString(response.code, function (error, svg) {
-      if (error) console.error(error)
-      console.log('success!');
-      const qrcode = document.querySelector('.js-qrcode-replace');
-      qrcode.innerHTML = svg;
-    });
+
+    const qrcode = document.querySelector('.js-qrcode-replace');
+
+    qrcode.innerHTML = `<img src="` + response.qrcode_base64 + `"><a download="qrcode-pix" href="` + response.qrcode_base64 + `" >Baixar QR CODE</a>`;
+
 
     const qrcodeDescription = document.querySelector('.js-qr-code-description');
 
-    var description =  "CHAVE PIX: " + response.key;
+    var description =  "Chave PIX: " + response.key;
 
     if (response.formated_amount && response.formated_amount != "") {
       description += "<br>Valor: " + response.amount;
     }
 
-    description += "<br>Código QRCODE: " + response.code;
+    description += "<br>Código QrCode: <button>mostrar</button><span class='hidden'>" + response.code + "</span>";
 
     qrcodeDescription.innerHTML = description;
+
+    qrcode.focus();
+
   };
   request.send(JSON.stringify(data))
 }
@@ -122,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   const event = new Event('change');
 
-  // Dispatch the event.
   radioType.dispatchEvent(event);
 
   var currencyMask = IMask(
@@ -132,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         blocks: {
           num: {
-            // nested masks are available!
             mask: Number,
             thousandsSeparator: ' ',
             padFractionalZeros: true,
