@@ -4,3 +4,4 @@ npm-debug.log
 /*.env
 website/node_modules
 website/public/dist
+website/public/dist/*

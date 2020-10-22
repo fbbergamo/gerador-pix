@@ -58,7 +58,7 @@ function sendData( data ) {
 
     const qrcode = document.querySelector('.js-qrcode-replace');
 
-    qrcode.innerHTML = `<img src="` + response.qrcode_base64 + `"><a download="qrcode-pix" href="` + response.qrcode_base64 + `" >Baixar QR CODE</a>`;
+    qrcode.innerHTML = `<img class="mx-auto" src="` + response.qrcode_base64 + `"><span> <a download="qrcode-pix" class="px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150" href="` + response.qrcode_base64 + `" >Baixar QrCode</a></span>`;
 
 
     const qrcodeDescription = document.querySelector('.js-qr-code-description');
@@ -69,7 +69,7 @@ function sendData( data ) {
       description += "<br>Valor: " + response.amount;
     }
 
-    description += "<br>Código QrCode: <button>mostrar</button><span class='hidden'>" + response.code + "</span>";
+    description += "<br>Código QrCode: <button class='underline text-sm'>mostrar</button><span class='hidden'>" + response.code + "</span>";
 
     qrcodeDescription.innerHTML = description;
 
