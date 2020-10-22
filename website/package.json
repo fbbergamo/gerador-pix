@@ -9,10 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "optimize-css-assets-webpack-plugin": "^5.0.4"
-  },
   "dependencies": {
+    "optimize-css-assets-webpack-plugin": "^5.0.4"
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "@tailwindcss/ui": "^0.6.2",
     "autoprefixer": "^10.0.1",
