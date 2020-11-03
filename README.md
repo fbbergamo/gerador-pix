@@ -1,3 +1,3 @@
 # gerador-pix
 
-Exemplo para geracao de QRCode PIX padrão BRCODE
+Exemplo para geracao de QRCode PIX padrão BRCODE https://wwww.gerarpix.com
