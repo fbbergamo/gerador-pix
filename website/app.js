@@ -2,6 +2,7 @@ require('./app.css');
 
 import IMask from 'imask';
 import Number from 'imask/esm/masked/number';
+import ClipboardJS from 'clipboard';
 
 const keyType = {
   "Telefone": {
@@ -69,13 +70,27 @@ function sendData( data ) {
       description += "<br>Valor: " + response.amount;
     }
 
-    description += "<br>Código QrCode: <button class='underline text-sm'>mostrar</button><span class='hidden'>" + response.code + "</span>";
+    description += "<br>Código QrCode: <button class='underline text-sm js-qrcode-show-and-copy' data-clipboard-target='#copy-qrcode-code-show-full'>mostrar e copiar</button><span id='copy-qrcode-code-show-full' class='js-show-qrcode-code hidden break-words mt-5 text-sm font-semibold block'>" + response.code + "</span>";
 
     qrcodeDescription.innerHTML = description;
 
     qrcode.focus();
 
+    var showCodeBtn = document.querySelector('.js-qrcode-show-and-copy');
+
+    var clipboard = new ClipboardJS('.js-qrcode-show-and-copy');
+
+    clipboard.on('success', function(e) {
+      e.clearSelection();
+    });
+
+
+    showCodeBtn.addEventListener('click', function() {
+      var showCode = document.querySelector('.js-show-qrcode-code');
+      showCode.classList.remove("hidden");
+    });
   };
+
   request.send(JSON.stringify(data))
 }
 
@@ -133,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
         blocks: {
           num: {
             mask: Number,
-            thousandsSeparator: ' ',
+            thousandsSeparator: '.',
             padFractionalZeros: true,
             min: 0,
           }
