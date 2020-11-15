@@ -66,10 +66,6 @@ app.listen(port, () => {
 formated_key = (key, key_type) => {
   var rkey = key.toUpperCase()
 
-  if (key_type == 'Email') {
-    rkey =  rkey.replace("@", " ");
-  }
-
   if (key_type == 'Telefone' || key_type == 'CNPJ' || key_type == "CPF") {
     rkey = rkey.replace(/\D/g,'');
   }
