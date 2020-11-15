@@ -37,16 +37,16 @@ app.get('/', function(req, res) {
 const QR_CODE_SIZE = 400;
 
 app.post('/emvqr-static', cors(corsOptionsDelegate), (req, res) => {
-  var { key, amount, name, reference, key_type } = req.body
+  var { key, amount, name, reference, key_type, city } = req.body
 
   if (key) {
       var formated_key_value = formated_key(key, key_type);
       var formated_amount_value = formated_amount(amount)
-      var code = generate_qrcp(formated_key_value, formated_amount_value, name, reference)
+      var code = generate_qrcp(formated_key_value, formated_amount_value, name, reference, city)
 
       QRCode.toDataURL(code, {width: QR_CODE_SIZE, height: QR_CODE_SIZE})
       .then(qrcode => {
-        res.json({ qrcode_base64: qrcode, code: code, key_type: key_type, key: key, amount: amount, formated_amount: formated_amount_value })
+        res.json({ qrcode_base64: qrcode, code: code, key_type: key_type, key: key, amount: amount, name: name, city: city, reference: reference, formated_amount: formated_amount_value })
       })
       .catch(err => {
         console.error(err)
@@ -76,10 +76,14 @@ formated_key = (key, key_type) => {
   return rkey
 }
 
+format_text = (text) => {
+  return text.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+}
+
 formated_amount = (amount) => {
   return amount.replace(',','.').replace(' ','').replace("R$", '')
 }
-generate_qrcp = (key, amount, name, reference) => {
+generate_qrcp = (key, amount, name, reference, city) => {
   emvqr = Merchant.buildEMVQR();
 
   emvqr.setPayloadFormatIndicator("01");
@@ -98,17 +102,21 @@ generate_qrcp = (key, amount, name, reference) => {
   emvqr.addMerchantAccountInformation("26", merchantAccountInformation);
 
   if (name) {
-    emvqr.setMerchantName(name.toUpperCase());
+    emvqr.setMerchantName(format_text(name));
+  }
+
+  if (city) {
+    emvqr.setMerchantCity(format_text(city));
   }
 
   if (amount && amount != '') {
-    emvqr.setTransactionAmount(amount);
+    emvqr.setTransactionAmount(format_text(amount));
   }
 
   const additionalDataFieldTemplate = Merchant.buildAdditionalDataFieldTemplate();
 
   if (reference) {
-    additionalDataFieldTemplate.setReferenceLabel(reference);
+    additionalDataFieldTemplate.setReferenceLabel(format_text(reference));
   }
   else {
     additionalDataFieldTemplate.setReferenceLabel("***");
