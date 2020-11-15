@@ -70,6 +70,18 @@ function sendData( data ) {
       description += "<br>Valor: " + response.amount;
     }
 
+    if (response.name) {
+      description += "<br>Nome: " + response.name;
+    }
+
+    if (response.city) {
+      description += "<br>Cidade: " + response.city;
+    }
+
+    if (response.reference) {
+      description += "<br>Referência: " + response.reference;
+    }
+
     description += "<br>Código QrCode: <button class='underline text-sm js-qrcode-show-and-copy' data-clipboard-target='#copy-qrcode-code-show-full'>mostrar e copiar</button><span id='copy-qrcode-code-show-full' class='js-show-qrcode-code hidden break-words mt-5 text-sm font-semibold block'>" + response.code + "</span>";
 
     qrcodeDescription.innerHTML = description;
