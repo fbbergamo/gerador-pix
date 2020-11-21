@@ -64,7 +64,7 @@ app.listen(port, () => {
 
 
 formated_key = (key, key_type) => {
-  var rkey = key.toUpperCase()
+  var rkey = key
 
   if (key_type == 'Telefone' || key_type == 'CNPJ' || key_type == "CPF") {
     rkey = rkey.replace(/\D/g,'');
@@ -77,7 +77,7 @@ formated_key = (key, key_type) => {
 }
 
 format_text = (text) => {
-  return text.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 }
 
 formated_amount = (amount) => {
