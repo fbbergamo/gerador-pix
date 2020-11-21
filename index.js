@@ -93,10 +93,6 @@ generate_qrcp = (key, amount, name, reference, city) => {
   const merchantAccountInformation = Merchant.buildMerchantAccountInformation();
   merchantAccountInformation.setGloballyUniqueIdentifier("BR.GOV.BCB.PIX");
 
-  const paymentSystemSpecific = Merchant.buildPaymentSystemSpecific();
-  paymentSystemSpecific.setGloballyUniqueIdentifier("BR.GOV.BCB.BRCODE");
-  paymentSystemSpecific.addPaymentSystemSpecific("01", "1.0.0");
-
   merchantAccountInformation.addPaymentNetworkSpecific("01", key);
 
   emvqr.addMerchantAccountInformation("26", merchantAccountInformation);
@@ -122,7 +118,6 @@ generate_qrcp = (key, amount, name, reference, city) => {
     additionalDataFieldTemplate.setReferenceLabel("***");
   }
 
-  additionalDataFieldTemplate.addPaymentSystemSpecific("50", paymentSystemSpecific);
   emvqr.setAdditionalDataFieldTemplate(additionalDataFieldTemplate);
   return emvqr.generatePayload();
 }
