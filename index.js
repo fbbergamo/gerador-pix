@@ -83,6 +83,8 @@ format_text = (text) => {
 formated_amount = (amount) => {
   return amount.replace(',','.').replace(' ','').replace("R$", '')
 }
+
+
 generate_qrcp = (key, amount, name, reference, city) => {
   emvqr = Merchant.buildEMVQR();
 
