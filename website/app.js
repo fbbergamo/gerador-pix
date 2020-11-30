@@ -59,7 +59,7 @@ function sendData( data ) {
 
     const qrcode = document.querySelector('.js-qrcode-replace');
 
-    qrcode.innerHTML = `<img class="mx-auto" src="` + response.qrcode_base64 + `"><span> <a download="qrcode-pix" class="px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150" href="` + response.qrcode_base64 + `" >Baixar QrCode</a></span>`;
+    qrcode.innerHTML = `<img alt="QRCode Gerado a partir dos dados fornecidos" class="mx-auto" src="` + response.qrcode_base64 + `"><span> <a download="qrcode-pix" class="px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150" href="` + response.qrcode_base64 + `" >Baixar QrCode</a></span>`;
 
 
     const qrcodeDescription = document.querySelector('.js-qr-code-description');
@@ -116,6 +116,9 @@ var serializeForm = function (form) {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
+
+
+
   const btn = document.querySelector('.js-trigger-qr-code');
 
   if (btn) {

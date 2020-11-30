@@ -1,0 +1,151 @@
+<div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+  <div class="mt-5 md:mt-0 md:col-span-2">
+    <form class="js-trigger-qr-code" method="POST">
+      <div class="shadow sm:rounded-md sm:overflow-hidden">
+        <div class="px-4 py-5 bg-white sm:p-6">
+          <div class="grid grid-cols-3 gap-6">
+            <div class="col-span-3 sm:col-span-2">
+              <label for="input-pix-key" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Chave PIX</label>
+              <div class="mt-1 relative rounded-md shadow-sm">
+                <div class="absolute inset-y-0 left-0 flex items-center">
+                  <select name="key_type" aria-label="Tipo Chave Pix" class="js-change-pix-type form-select h-full py-0 pl-3 pr-8 border-transparent bg-transparent text-gray-500 sm:text-sm sm:leading-5">
+                    <option>Telefone</option>
+                    <option>Email</option>
+                    <option>CPF</option>
+                    <option>CNPJ</option>
+                    <option>Outro</option>
+                  </select>
+                </div>
+                <input name="key" id="input-pix-key" class="form-input block w-full pl-24 sm:text-sm sm:leading-5 js-pix-key-input" maxlength="60" inputmode="tel" placeholder="(11) 95555-5555" required=true  aria-label="Telefone Cadastrado no PIX, Somente números" type="tel">
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label for="input-name" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Nome do beneficiário (até 25 letras)</label>
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <input inputmode="text" id="input-name" name="name" class="form-input block md:w-1/4 w-full pr-12 sm:text-sm sm:leading-5" placeholder="" required=true maxlength="25" aria-label="Nome do beneficiário Até 25 letras">
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label for="input-city" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Cidade do beneficiário ou da transação (até 15 letras)</label>
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <input inputmode="text" id="input-city" name="city" class="form-input block md:w-1/4 w-full pr-12 sm:text-sm sm:leading-5" placeholder="" required=true maxlength="15" aria-label="Cidade do beneficiário Até 15 letras">
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label for="input-amount" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Valor para transferência (opcional)</label>
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <input inputmode="numeric" id="input-amount" name="amount" class="js-amount-currency-mask form-input block md:w-1/4 w-full pr-12 sm:text-sm sm:leading-5" placeholder="0,00"  aria-label="Valor padrão para transferência">
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label for="input-reference" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Texto de referência para transferência (opcional - até 20 letras)</label>
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <input inputmode="text" id="input-reference" name="reference" class="form-input block md:w-1/4 w-full pr-12 sm:text-sm sm:leading-5" placeholder="PAGAMNENTO-123" maxlength="20" aria-label="Texto de renferencia para tansferencia, o usuário vai ver esse texto e deve aparecer em seu extrato">
+            </div>
+          </div>
+        </div>
+
+        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+          <span class="inline-flex rounded-md shadow-sm">
+            <button type="submit" class=" inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+              Gerar
+            </button>
+          </span>
+        </div>
+      </div>
+    </form>
+
+    <div class="mt-6">
+      <h2 class="text-xl leading-9 font-bold mt-10">
+        QR Code
+      </h2>
+
+      <div class=" mt-2 border-2 border-gray-300 border-dashed rounded-md">
+        <div class="object-center mx-auto js-qrcode-replace text-center mb-8">
+
+          <svg class="mx-auto w-16 text-gray-400 h-32" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 2c1.654 0 3 1.346 3 3v14c0 1.654-1.346 3-3 3h-14c-1.654 0-3-1.346-3-3v-14c0-1.654 1.346-3 3-3h14zm0-2h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-8 8h-1v-2h1v1h2v1h-1v1h-1v-1zm2 12v-1h-1v1h1zm-1-15v-1h-2v1h1v1h1v-1zm8-1v6h-1v-1h-4v-5h5zm-1 4v-3h-3v3h3zm-14 2h-1v1h2v-1h-1zm0 3h1v1h1v-3h-1v1h-2v2h1v-1zm5 1v2h1v-2h-1zm4-10h-1v3h1v-3zm0 5v-1h-1v1h1zm3-2h1v-1h-1v1zm-10-1h-1v1h1v-1zm2-2v5h-5v-5h5zm-1 1h-3v3h3v-3zm9 5v1h-1v-1h-2v1h-1v-1h-3v-1h-1v1h-1v1h1v2h1v-1h1v2h1v-2h3v1h-2v1h2v1h1v-3h1v1h1v2h1v-1h1v-1h-1v-1h-1v-1h1v-1h-2zm-11 8h1v-1h-1v1zm-2-3h5v5h-5v-5zm1 4h3v-3h-3v3zm12-3v-1h-1v1h1zm0 1h-1v1h-1v-1h-1v-1h1v-1h-2v-1h-1v2h-1v1h-1v3h1v-1h1v-1h2v2h1v-1h1v1h2v-1h1v-1h-2v-1zm-9-3h1v-1h-1v1zm10 2v1h1v1h1v-3h-1v1h-1zm2 4v-1h-1v1h1zm0-8v-1h-1v1h1z"/></svg>
+
+        </div>
+        <div class="text-center block">
+          <p class="js-qr-code-description"></p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="text-xl leading-9 font-bold mt-10">FAQ</h2>
+    <div class="shadow sm:rounded-md sm:overflow-hidden" itemscope itemtype="https://schema.org/FAQPage">
+      <div class="px-4 py-5 bg-white sm:p-6">
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 class=" text-lg leading-9 font-bold mt-5 mb-5" temprop="name"> O que é o PIX?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div <div itemprop="text">
+              <p class="mb-2">Aprovado em 12 de agosto deste ano, o PIX é um sistema de pagamento instantâneo e gratuito que foi criado pelo Banco Central (BACEN), com o intuito de facilitar as transações Brasil afora.</p>
+              <p class="mb-2">Provavelmente, você já precisou fazer uma transferência urgente, mas, quando se deparou com a data, lembrou que teria um problemão, uma vez que era uma sexta-feira à noite e o dinheiro enviado por TED ou DOC só cairia na conta terceira na segunda-feira.</p>
+              <p class="mb-2">O PIX, portanto, chegou para que problemas como esse fossem resolvidos da maneira mais simples, segura e rápida possível. Imagine só não precisar mais informar agência, banco, conta, dígitos etc. para realizar uma transação financeira.</p>
+            </div>
+          </div>
+        </div>
+
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 class=" text-lg leading-9 font-bold mt-5 mb-5">Como funciona o PIX?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div <div itemprop="text">
+              <p class="mb-2">Como o PIX foi criado para que funcione da maneira mais simples possível, não existem muitos segredos para conseguir colocá-lo em ação.</p>
+              <p class="mb-2">Você precisa cadastrar a sua chave PIX, que pode ser realizado em quaisquer serviços de banco, fintechs ou cooperativas de crédito, desde que você já seja cliente.</p>
+              <p class="mb-2">Dessa forma, as opções principais de chave PIX são: número de celular, e-mail, CPF ou CNPJ e, para cadastrar, é só você ir até ao menu PIX da plataforma que está utilizando e seguir as instruções para inserção dos dados e verificação da conta.</p>
+              <p class="mb-2">Lembre-se de que o cadastro deve ser realizado de acordo com a sua preferência e necessidade, isto é, não tente cadastrar uma chave em um meio que você não conseguirá acessar.</p>
+              <p class="mb-2">Lembrando que para pessoa física é totalmente grátis para realizar transações.</p>
+              <p class="mb-2">Ao cadastrar a sua chave em uma dessas opções, você poderá realizar transações bancárias em qualquer hora do dia (24 horas), e elas são concluídas dentro de alguns segundos. Vale lembrar que é possível ter no máximo 5 chaves PIX por usuário na mesma instituição.</p>
+              <p class="mb-2">Para isso, você precisa estar registrado no PIX e a pessoa ou instituição para a qual você está enviando o dinheiro, também. Se o registro já foi realizado por ambos, basta que você mostre o QrCode ou troque informações da chave e realizem a transação pelo PIX da plataforma escolhida.</p>
+              <p class="mb-2">Além disso, com essa nova forma de pagamento, é possível pagar compras em qualquer comércio que também já esteja cadastrado no PIX. E o melhor é que é tudo digital, ou seja, grande praticidade.</p>
+            </div>
+          </div>
+        </div>
+
+        <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <h3 class=" text-lg leading-9 font-bold mt-5 mb-5">Como gerar o QrCode Estático Pix?</h3>
+          <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div <div itemprop="text">
+              <p class="mb-2">QRCode Estático pode ser usado para mais de uma transação, tendo a função similar a de uma etiqueta de produtos. Pode, inclusive, estar impresso no ponto de venda físico, site ou aplicativo.</p>
+              <p class="mb-2">Por isso, é o ideal para quem atua no varejo e com prestação de serviço ou quem deseja dividir uma conta com um grupo de amigos e quer facilitar a transferência</p>
+              <p class="mb-2">É obrigatório inserir a cidade de origem do beneficiário ou local da Transferência, nome do beneficiário e a chave PIX. O  QrCode pode ter um valor determinado ou pode ter o valor em aberto, para que o consumidor coloque o valor adequado após o código ser escaneado. </p>
+            </div>
+          </div>
+        </div>
+
+
+        <h3 class="text-lg leading-9 font-bold mb-5">O site armazena meus dados bancários?</h3>
+        <p class="mb-2">Não! Não armazenamos em nenhum momento! Não armazenamos os dados informados como CPF, Telefone.Não armazenamos nenhum dos dados gerados!</p>
+        <p class="mb-2">Os dados são processados pelo servidor e retornados sem armazenar qualquer dado sensível</p>
+
+        <h3 class=" text-lg leading-9 font-bold mt-5 mb-5">Esse site utiliza cookies?</h3>
+        <p>No momento o site não utiliza cookie de navegação para fins de marketing. Utilizamos um cookie de visita do CloudFlare:</p>
+        <p>Privacidade e o cookie _cfduid</p>
+        <p>O cookie _cfduid coleta e torna anônimos os endereços IP do usuário final usando um hash unilateral de determinados valores para que não possam ser identificados pessoalmente. O cookie é um cookie de sessão que expira após 30 dias.</p>
+        <p>O cookie _cfduid não:</p>
+        <p>-> permitir o rastreamento entre sites.</p>
+        <p>-> siga os usuários de site para site mesclando vários identificadores _cfduid em um perfil ou corresponda a qualquer ID de usuário em um aplicativo da web do Cliente.</p>
+
+        <h3 class=" text-lg leading-9 font-bold mt-5 mb-5">Isenção de responsabilidade</h3>
+        <p>Os QR codes não foram testadas em todos os bancos, antes de transferir verifique se as informações estão corretas. O site se isenta de qualquer responsabilidade pela exatidão e integridade das informações divulgada.<p>
+          <p class="mt-2">Mantenha sempre seu computador atualizado e verifique o antivirus, se notar que alguma imagem foi alterada verifique seus programas instalados.</p>
+
+          <h3 class=" text-lg leading-9 font-bold mt-5 mb-5">Tem API para gerar o QRCode no meu sistema?</h3>
+          <p>Oficialmente o site não fornece mas caso queria utilizar por sua conta e risco, segue a chamada:</p>
+          <br>
+          <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl <span style="background-color: #fff0f0">&#39;https://www.gerarpix.com.br/emvqr-static&#39;</span> <span style="color: #666666; font-weight: bold; background-color: #fff0f0">\</span>
+          -H <span style="background-color: #fff0f0">&#39;Content-Type: application/json;charset=UTF-8&#39;</span> <span style="color: #666666; font-weight: bold; background-color: #fff0f0">\</span>
+          --data-binary <span style="background-color: #fff0f0">&#39;{&quot;key_type&quot;:&quot;Telefone&quot;,&quot;key&quot;:&quot;9117bedf-de7d-4a4d-b55b-fc9ff06a8067&quot;,&quot;name&quot;:&quot;FELIPE BARRETO BERGAMO&quot;,&quot;city&quot;:&quot;São Paulo&quot;,&quot;amount&quot;:&quot;R$ 5,00&quot;,&quot;reference&quot;:&quot;CAFE Felipe&quot;}&#39;</span>
+        </pre></div>
+
+        <h3 class=" text-lg leading-9 font-bold mt-5 mb-5">Onde Posso ver o código?</h3>
+        <a href="https://github.com/fbbergamo/gerador-pix"  target="blank"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="161" height="20" role="img" aria-label="fbbergamo: gerador-pix"><title>fbbergamo: gerador-pix</title><linearGradient id="s" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="r"><rect width="161" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#r)"><rect width="86" height="20" fill="#555"/><rect x="86" width="75" height="20" fill="#007ec6"/><rect width="161" height="20" fill="url(#s)"/></g><g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="110"><image x="5" y="3" width="14" height="14" xlink:href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJ3aGl0ZXNtb2tlIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+R2l0SHViIGljb248L3RpdGxlPjxwYXRoIGQ9Ik0xMiAuMjk3Yy02LjYzIDAtMTIgNS4zNzMtMTIgMTIgMCA1LjMwMyAzLjQzOCA5LjggOC4yMDUgMTEuMzg1LjYuMTEzLjgyLS4yNTguODItLjU3NyAwLS4yODUtLjAxLTEuMDQtLjAxNS0yLjA0LTMuMzM4LjcyNC00LjA0Mi0xLjYxLTQuMDQyLTEuNjFDNC40MjIgMTguMDcgMy42MzMgMTcuNyAzLjYzMyAxNy43Yy0xLjA4Ny0uNzQ0LjA4NC0uNzI5LjA4NC0uNzI5IDEuMjA1LjA4NCAxLjgzOCAxLjIzNiAxLjgzOCAxLjIzNiAxLjA3IDEuODM1IDIuODA5IDEuMzA1IDMuNDk1Ljk5OC4xMDgtLjc3Ni40MTctMS4zMDUuNzYtMS42MDUtMi42NjUtLjMtNS40NjYtMS4zMzItNS40NjYtNS45MyAwLTEuMzEuNDY1LTIuMzggMS4yMzUtMy4yMi0uMTM1LS4zMDMtLjU0LTEuNTIzLjEwNS0zLjE3NiAwIDAgMS4wMDUtLjMyMiAzLjMgMS4yMy45Ni0uMjY3IDEuOTgtLjM5OSAzLS40MDUgMS4wMi4wMDYgMi4wNC4xMzggMyAuNDA1IDIuMjgtMS41NTIgMy4yODUtMS4yMyAzLjI4NS0xLjIzLjY0NSAxLjY1My4yNCAyLjg3My4xMiAzLjE3Ni43NjUuODQgMS4yMyAxLjkxIDEuMjMgMy4yMiAwIDQuNjEtMi44MDUgNS42MjUtNS40NzUgNS45Mi40Mi4zNi44MSAxLjA5Ni44MSAyLjIyIDAgMS42MDYtLjAxNSAyLjg5Ni0uMDE1IDMuMjg2IDAgLjMxNS4yMS42OS44MjUuNTdDMjAuNTY1IDIyLjA5MiAyNCAxNy41OTIgMjQgMTIuMjk3YzAtNi42MjctNS4zNzMtMTItMTItMTIiLz48L3N2Zz4="/><text aria-hidden="true" x="525" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="590">fbbergamo</text><text x="525" y="140" transform="scale(.1)" fill="#fff" textLength="590">fbbergamo</text><text aria-hidden="true" x="1225" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="650">gerador-pix</text><text x="1225" y="140" transform="scale(.1)" fill="#fff" textLength="650">gerador-pix</text></g></svg></a>
+      </div>
+    </div>
+  </div>
+</div>

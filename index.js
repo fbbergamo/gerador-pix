@@ -4,6 +4,7 @@ var express = require('express')
 
 const pino = require('pino-http')()
 const app = express();
+var exphbs  = require('express-handlebars');
 
 var path = require('path');
 var QRCode = require('qrcode')
@@ -12,6 +13,8 @@ app.use(helmet());
 app.use(pino);
 app.use(bodyParser.json());
 app.use(express.static('website/public'))
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 const port = process.env.PORT || 8000;
 const { Merchant } = require('steplix-emv-qrcps');
@@ -31,7 +34,7 @@ var corsOptionsDelegate = function (req, callback) {
 }
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/website/public/index.html'));
+  res.render('index');
 });
 
 const QR_CODE_SIZE = 400;
@@ -83,7 +86,6 @@ format_text = (text) => {
 formated_amount = (amount) => {
   return amount.replace(',','.').replace(' ','').replace("R$", '')
 }
-
 
 generate_qrcp = (key, amount, name, reference, city) => {
   emvqr = Merchant.buildEMVQR();
