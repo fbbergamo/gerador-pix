@@ -51,7 +51,15 @@
   </div>
 
   <main class="mt-10">
-     {{{body}}}
+    {{#if article}}
+      <div class="article__content">
+    {{/if}}
+
+    {{{body}}}
+
+    {{#if article}}
+      </div>
+    {{/if}}
   </main>
 </body>
 </html>

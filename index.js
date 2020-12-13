@@ -33,8 +33,28 @@ var corsOptionsDelegate = function (req, callback) {
   callback(null, corsOptions) // callback expects two parameters: error and options
 }
 
+const fs = require('fs');
+var HTMLParser = require('node-html-parser');
+const article_links = []
+
+fs.readdirSync('views/articles/').forEach(file => {
+  var path_article = file.replace(/\.[^/.]+$/, "")
+
+  app.get("/" + path_article, function(req, res) {
+    res.render("articles/" + path_article, { article: true});
+  });
+
+  var data = fs.readFileSync('views/articles/' + file);
+
+
+  const root = HTMLParser.parse(data);
+
+  article_links.push({"title": root.querySelector('h1').rawText, "path": path_article});
+});
+
+
 app.get('/', function(req, res) {
-  res.render('index');
+  res.render('index', {article_links: article_links});
 });
 
 const QR_CODE_SIZE = 400;
