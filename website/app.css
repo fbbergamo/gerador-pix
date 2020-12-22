@@ -5,6 +5,19 @@
 @tailwind utilities;
 
 
-.article__content {
+.article__content h1 {
+  @apply mb-10 text-2xl text-purple-800 font-bold;
+}
 
+.article__content h2 {
+  @apply mb-2 text-lg text-blue-700 font-bold mt-2;
+}
+
+.article__content  p {
+  @apply mt-2 mb-2;
+  text-align: justify;
+}
+
+.article__content  p a {
+  @apply underline;
 }

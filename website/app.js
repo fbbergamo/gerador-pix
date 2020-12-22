@@ -150,23 +150,28 @@ document.addEventListener('DOMContentLoaded', function() {
          window.current_mask_input = IMask(input, attributes["maskOption"]);
       }
     })
+
+    const event = new Event('change');
+
+    radioType.dispatchEvent(event);
   }
-  const event = new Event('change');
 
-  radioType.dispatchEvent(event);
+  const maskCurrency = document.querySelector('.js-amount-currency-mask');
 
-  var currencyMask = IMask(
-    document.querySelector('.js-amount-currency-mask'),
-      {
-        mask: 'R$ num',
+  if (maskCurrency) {
+    IMask(
+      document.querySelector('.js-amount-currency-mask'),
+        {
+          mask: 'R$ num',
 
-        blocks: {
-          num: {
-            mask: Number,
-            thousandsSeparator: '.',
-            padFractionalZeros: true,
-            min: 0,
+          blocks: {
+            num: {
+              mask: Number,
+              thousandsSeparator: '.',
+              padFractionalZeros: true,
+              min: 0,
+            }
           }
-        }
-    });
+      });
+  }
 });
