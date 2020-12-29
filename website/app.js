@@ -54,7 +54,6 @@ function sendData( data ) {
   request.open("POST", "/emvqr-static");
   request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   request.onload = function (body) {
-    console.log(body.target.response);
     var response = JSON.parse(body.target.response)
 
     const qrcode = document.querySelector('.js-qrcode-replace');
@@ -101,6 +100,10 @@ function sendData( data ) {
       var showCode = document.querySelector('.js-show-qrcode-code');
       showCode.classList.remove("hidden");
     });
+
+    const qrcodeContainer = document.querySelector('.js-qr-code-container');
+
+    qrcodeContainer.scrollIntoView();
   };
 
   request.send(JSON.stringify(data))
