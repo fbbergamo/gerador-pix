@@ -22,6 +22,15 @@ const QR_CODE_SIZE = 400;
 const article_links = []
 var HTMLParser = require('node-html-parser');
 
+const contentSecurityPolicy = [
+  "script-src 'self' 'nonce-2726c7f26c' www.googletagmanager.com",
+].join(";");
+
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", contentSecurityPolicy);
+  next();
+});
+
 fs.readdirSync('views/articles/').forEach(file => {
   var path_article = file.replace(/\.[^/.]+$/, "")
 

@@ -111,7 +111,7 @@
           <h3 class=" text-lg leading-9 font-bold mt-5 mb-5" itemprop="name">Como gerar o QrCode Estático Pix?</h3>
           <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
             <div itemprop="text">
-              <p class="mb-2">QRCode Estático pode ser usado para mais de uma transação, tendo a função similar a de uma etiqueta de produtos. Pode, inclusive, estar impresso no ponto de venda físico, site ou aplicativo.</p>
+              <p class="mb-2">QRCode PIX Estático pode ser usado para mais de uma transação, tendo a função similar a de uma etiqueta de produtos. Pode, inclusive, estar impresso no ponto de venda físico, site ou aplicativo.</p>
               <p class="mb-2">Por isso, é o ideal para quem atua no varejo e com prestação de serviço ou quem deseja dividir uma conta com um grupo de amigos e quer facilitar a transferência</p>
               <p class="mb-2">É obrigatório inserir a cidade de origem do beneficiário ou local da Transferência, nome do beneficiário e a chave PIX. O  QrCode pode ter um valor determinado ou pode ter o valor em aberto, para que o consumidor coloque o valor adequado após o código ser escaneado. </p>
             </div>
@@ -124,12 +124,17 @@
         <p class="mb-2">Os dados são processados pelo servidor e retornados sem armazenar qualquer dado sensível</p>
 
         <h3 class=" text-lg leading-9 font-bold mt-5 mb-5">Esse site utiliza cookies?</h3>
-        <p>No momento o site não utiliza cookie de navegação para fins de marketing. Utilizamos um cookie de visita do CloudFlare:</p>
+        <p>Utilizamos um cookie de visita do CloudFlare e Google Analytics:</p>
         <p>Privacidade e o cookie _cfduid</p>
         <p>O cookie _cfduid coleta e torna anônimos os endereços IP do usuário final usando um hash unilateral de determinados valores para que não possam ser identificados pessoalmente. O cookie é um cookie de sessão que expira após 30 dias.</p>
         <p>O cookie _cfduid não:</p>
         <p>-> permitir o rastreamento entre sites.</p>
         <p>-> siga os usuários de site para site mesclando vários identificadores _cfduid em um perfil ou corresponda a qualquer ID de usuário em um aplicativo da web do Cliente.</p>
+        <br>
+        <p>Importante que você saiba que usamos o Google Analytics para analisar como nosso site é usado e melhorá-lo a partir das necessidades dos usuários.</p>
+        <p>O Google Analytics prepara o cookie para guardar informações anônimas sobre: como você chegou até o site, quais páginas visitou, quanto tempo passa em cada página e no que você clica quando acessa nossa página.
+
+        <p>Você pode conhecer os detalhes da política do Google Analytics neste link <a class="external-link" href="https://policies.google.com/technologies/partner-sites?hl=pt-BR" target="_self" >aqui</a></p>
 
         <h3 class=" text-lg leading-9 font-bold mt-5 mb-5">Isenção de responsabilidade</h3>
         <p>Os QR codes não foram testadas em todos os bancos, antes de transferir verifique se as informações estão corretas. O site se isenta de qualquer responsabilidade pela exatidão e integridade das informações divulgada.<p>
@@ -138,7 +143,7 @@
           <h3 class=" text-lg leading-9 font-bold mt-5 mb-5">Tem API para gerar o QRCode no meu sistema?</h3>
           <p>Oficialmente o site não fornece mas caso queria utilizar por sua conta e risco, segue a chamada:</p>
           <br>
-          <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl <span style="background-color: #fff0f0">&#39;https://www.gerarpix.com.br/emvqr-static&#39;</span> <span style="color: #666666; font-weight: bold; background-color: #fff0f0">\</span>
+          <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">curl <span style="background-color: #fff0f0">&#39;https://www.gerarpix.com.br/emvqr-static&#39;</span> <span style="color: #666666; font-weight: bold; background-color: #fff0f0">\</span>
           -H <span style="background-color: #fff0f0">&#39;Content-Type: application/json;charset=UTF-8&#39;</span> <span style="color: #666666; font-weight: bold; background-color: #fff0f0">\</span>
           --data-binary <span style="background-color: #fff0f0">&#39;{&quot;key_type&quot;:&quot;Telefone&quot;,&quot;key&quot;:&quot;9117bedf-de7d-4a4d-b55b-fc9ff06a8067&quot;,&quot;name&quot;:&quot;FELIPE BARRETO BERGAMO&quot;,&quot;city&quot;:&quot;São Paulo&quot;,&quot;amount&quot;:&quot;R$ 5,00&quot;,&quot;reference&quot;:&quot;CAFE Felipe&quot;}&#39;</span>
         </pre></div>
