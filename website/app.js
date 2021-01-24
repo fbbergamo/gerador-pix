@@ -129,6 +129,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
   showInstallPromotion();
 });
 
+
 document.addEventListener('DOMContentLoaded', function() {
   const btn = document.querySelector('.js-trigger-qr-code');
 

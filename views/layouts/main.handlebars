@@ -60,12 +60,24 @@
 
   <main class="mt-10">
     {{#if article}}
-      <div class="article__content max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+      <div class="article__content max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8" itemscope="true" itemtype="http://schema.org/Article">
+        <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="https://google.com/article" />
+        <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+          <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+            <meta itemprop="url" content="/android-chrome-192x192.png">
+            <meta itemprop="width" content="192">
+            <meta itemprop="height" content="192">
+          </div>
+          <meta itemprop="name" content="Gerador QRcode Pix">
+        </div>
+        <section itemprop="articleBody">
+          <meta itemprop="author" content="Gerador QRcode Pix">
     {{/if}}
 
     {{{body}}}
 
     {{#if article}}
+        </section>
       </div>
     {{/if}}
   </main>
