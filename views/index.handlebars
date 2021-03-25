@@ -43,9 +43,9 @@
           </div>
 
           <div class="mt-6">
-            <label for="input-reference" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Texto de referência para transferência (opcional - até 20 letras)</label>
+            <label for="input-reference" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Código da transferência - Sem espaço (opcional - até 20 Letras e/ou Números)</label>
             <div class="mt-1 relative rounded-md shadow-sm">
-              <input inputmode="text" id="input-reference" name="reference" class="form-input block md:w-1/4 w-full pr-12 sm:text-sm sm:leading-5" placeholder="PAGAMNENTO-123" maxlength="20" aria-label="Texto de renferencia para tansferencia, o usuário vai ver esse texto e deve aparecer em seu extrato">
+              <input inputmode="text" id="input-reference" name="reference" class="form-input block md:w-1/4 w-full pr-12 sm:text-sm sm:leading-5" placeholder="PAGAMENTO123D" maxlength="20" aria-label="Texto de renferencia para tansferencia, o usuário vai ver esse texto e deve aparecer em seu extrato" pattern="[A-Za-z0-9]+">
             </div>
           </div>
         </div>
