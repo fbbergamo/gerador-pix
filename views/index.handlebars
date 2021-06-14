@@ -3,49 +3,49 @@
     <form class="js-trigger-qr-code" method="POST">
       <div class="shadow sm:rounded-md sm:overflow-hidden">
         <div class="px-4 py-5 bg-white sm:p-6">
-          <div class="grid grid-cols-3 gap-6">
-            <div class="col-span-3 sm:col-span-2">
-              <label for="input-pix-key" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Chave PIX</label>
-              <div class="mt-1 relative rounded-md shadow-sm">
-                <div class="absolute inset-y-0 left-0 flex items-center">
-                  <select name="key_type" aria-label="Tipo Chave Pix" class="js-change-pix-type form-select h-full py-0 pl-3 pr-8 border-transparent bg-transparent text-gray-500 sm:text-sm sm:leading-5">
-                    <option>Telefone</option>
-                    <option>Email</option>
-                    <option>CPF</option>
-                    <option>CNPJ</option>
-                    <option>Outro</option>
-                  </select>
-                </div>
-                <input name="key" id="input-pix-key" class="form-input block w-full pl-24 sm:text-sm sm:leading-5 js-pix-key-input" maxlength="60" inputmode="tel" placeholder="(11) 95555-5555" required=true  aria-label="Telefone Cadastrado no PIX, Somente números" type="tel">
+          <div class="col-span-3 sm:col-span-2">
+            <label for="input-pix-key" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Chave PIX</label>
+            <div class="mt-1 relative rounded-md shadow-sm">
+              <div class="absolute inset-y-0 left-0 flex items-center">
+                <label for="key_type" class="sr-only">Tipo Chave Pix</label>
+                <select id="key_type" name="key_type" aria-label="Tipo Chave Pix" class="js-change-pix-type  focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-3 pr-8 border-transparent bg-transparent text-gray-500 sm:text-sm rounded-md">
+                  <option>Telefone</option>
+                  <option>Email</option>
+                  <option>CPF</option>
+                  <option>CNPJ</option>
+                  <option>Outro</option>
+                </select>
               </div>
+              <input name="key" id="input-pix-key" class="js-pix-key-input pl-24 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 border rounded-md" maxlength="60" inputmode="tel" placeholder="(11) 95555-5555" required=true  aria-label="Telefone Cadastrado no PIX, Somente números" type="tel">
             </div>
           </div>
+
 
           <div class="mt-6">
             <label for="input-name" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Nome do beneficiário (até 25 letras)</label>
             <div class="mt-1 relative rounded-md shadow-sm">
-              <input inputmode="text" id="input-name" name="name" class="form-input block md:w-1/4 w-full pr-12 sm:text-sm sm:leading-5" placeholder="" required=true maxlength="25" aria-label="Nome do beneficiário Até 25 letras">
+              <input inputmode="text" id="input-name" name="name" class="border-gray-300 border p-2  focus:ring-indigo-500 focus:border-indigo-500 rounded-md  block md:w-1/2 w-full sm:text-sm sm:leading-5" placeholder="" required=true maxlength="25" aria-label="Nome do beneficiário Até 25 letras">
             </div>
           </div>
 
           <div class="mt-6">
             <label for="input-city" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Cidade do beneficiário ou da transação (até 15 letras)</label>
             <div class="mt-1 relative rounded-md shadow-sm">
-              <input inputmode="text" id="input-city" name="city" class="form-input block md:w-1/4 w-full pr-12 sm:text-sm sm:leading-5" placeholder="" required=true maxlength="15" aria-label="Cidade do beneficiário Até 15 letras">
+              <input inputmode="text" id="input-city" name="city" class="border-gray-300 border p-2  focus:ring-indigo-500 focus:border-indigo-500 rounded-md  block md:w-1/2 w-full pr-12 sm:text-sm sm:leading-5" placeholder="" required=true maxlength="15" aria-label="Cidade do beneficiário Até 15 letras">
             </div>
           </div>
 
           <div class="mt-6">
             <label for="input-amount" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Valor para transferência (opcional)</label>
             <div class="mt-1 relative rounded-md shadow-sm">
-              <input inputmode="numeric" id="input-amount" name="amount" class="js-amount-currency-mask form-input block md:w-1/4 w-full pr-12 sm:text-sm sm:leading-5" placeholder="0,00"  aria-label="Valor padrão para transferência">
+              <input inputmode="numeric" id="input-amount" name="amount" class="js-amount-currency-mask border-gray-300 border p-2  focus:ring-indigo-500 focus:border-indigo-500 rounded-md  block md:w-1/2  w-full pr-12 sm:text-sm sm:leading-5" placeholder="0,00"  aria-label="Valor padrão para transferência">
             </div>
           </div>
 
           <div class="mt-6">
             <label for="input-reference" class="block text-sm font-medium leading-5 text-gray-700 mb-2">Código da transferência - Sem espaço (opcional - até 20 Letras e/ou Números)</label>
             <div class="mt-1 relative rounded-md shadow-sm">
-              <input inputmode="text" id="input-reference" name="reference" class="form-input block md:w-1/4 w-full pr-12 sm:text-sm sm:leading-5" placeholder="PAGAMENTO123D" maxlength="20" aria-label="Texto de renferencia para tansferencia, o usuário vai ver esse texto e deve aparecer em seu extrato" pattern="[A-Za-z0-9]+">
+              <input inputmode="text" id="input-reference" name="reference" class="border-gray-300 border p-2  focus:ring-indigo-500 focus:border-indigo-500 rounded-md  block md:w-1/2 w-full pr-12 sm:text-sm sm:leading-5" placeholder="PAGAMENTO123D" maxlength="20" aria-label="Texto de renferencia para tansferencia, o usuário vai ver esse texto e deve aparecer em seu extrato" pattern="[A-Za-z0-9]+">
             </div>
           </div>
         </div>

@@ -11,18 +11,18 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "express-handlebars": "^5.2.0",
-    "helmet": "^4.1.1",
-    "node-html-parser": "^2.0.0",
-    "pino": "^6.7.0",
-    "pino-http": "^5.3.0",
+    "express-handlebars": "^5.3.2",
+    "helmet": "^4.6.0",
+    "node-html-parser": "^2.2.1",
+    "pino": "^6.11.3",
+    "pino-http": "^5.5.0",
     "qrcode": "^1.4.4",
     "steplix-emv-qrcps": "0.0.8"
   },
   "keywords": [],
   "description": "",
   "devDependencies": {
-    "webpack": "^5.0.0",
-    "webpack-cli": "^4.0.0"
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2"
   }
 }
