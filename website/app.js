@@ -55,7 +55,7 @@ function sendData( data ) {
   request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   request.onload = function (body) {
     var response = JSON.parse(body.target.response)
-
+    var hasAmount = !!(response.formated_amount && response.formated_amount !== '')
     const qrcode = document.querySelector('.js-qrcode-replace');
 
     qrcode.innerHTML = `<img alt="QRCode Gerado a partir dos dados fornecidos" class="mx-auto" src="` + response.qrcode_base64 + `"><span> <a download="qrcode-pix" class="px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150" href="` + response.qrcode_base64 + `" >Baixar QrCode</a></span>`;
@@ -65,7 +65,7 @@ function sendData( data ) {
 
     var description =  "Chave PIX: " + response.key;
 
-    if (response.formated_amount && response.formated_amount != "") {
+    if (hasAmount) {
       description += "<br>Valor: " + response.amount;
     }
 
@@ -95,10 +95,14 @@ function sendData( data ) {
       e.clearSelection();
     });
 
-
     showCodeBtn.addEventListener('click', function() {
       var showCode = document.querySelector('.js-show-qrcode-code');
       showCode.classList.remove("hidden");
+    });
+
+    window.dataLayer.push({
+    	'event' : 'generate_qr_code',
+    	'hasAmount' : hasAmount
     });
 
     const qrcodeContainer = document.querySelector('.js-qr-code-container');
@@ -131,6 +135,8 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 
 document.addEventListener('DOMContentLoaded', function() {
+  window.dataLayer = window.dataLayer || [];
+
   const btn = document.querySelector('.js-trigger-qr-code');
 
   if (btn) {
