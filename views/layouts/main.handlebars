@@ -11,7 +11,7 @@
     gtag('config', 'G-6452LW4PF4');
   </script>
   <meta charset="utf-8">
-  <title>Gerador QrCode Pix</title>
+  <title>Gerador Qr Code Pix e Placa</title>
   <meta name="description" content="O gerador de QRCode PIX pode ser usado para mais de uma transação, tendo a função similar a de uma etiqueta de produtos, pagamento de compra ou cobrança por serviço prestado. Pode, inclusive, estar impresso no ponto de venda físico, site ou aplicativo.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -48,17 +48,17 @@
 </head>
 
 <body itemscope itemtype="https://schema.org/WebPage">
-  <div class="bg-gray-800">
+  <div class="bg-gray-800 print:hidden">
     <header class="py-5">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl leading-9 font-bold text-white">
-          <a href="/" itemprop="name">Gerador QrCode Pix - Online</a>
+        <h1 class="text-2xl leading-9 font-bold text-white">
+          <a href="/" itemprop="name">Gerador Qr Code Pix - Placa</a>
         </h1>
       </div>
     </header>
   </div>
 
-  <main class="mt-10">
+  <main class="mt-10 print:m-0">
     {{#if article}}
       <div class="article__content max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8" itemscope="true" itemtype="http://schema.org/Article">
         <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="https://google.com/article" />
