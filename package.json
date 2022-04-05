@@ -8,7 +8,7 @@
     "postinstall": "cd website && npm install && node_modules/.bin/webpack --mode production"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.3.2",
