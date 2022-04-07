@@ -48,6 +48,11 @@ const keyType = {
     "inputmode": "text"
   }
 }
+const download_button_style = `px-4 py-2 border border-transparent
+  text-base leading-6 font-medium rounded-md text-white bg-indigo-600
+  hover:bg-indigo-500 focus:outline-none focus:border-indigo-700
+  focus:shadow-outline-indigo active:bg-indigo-700 transition
+  ease-in-out duration-150 print:hidden`
 
 function sendData( data ) {
   var request = new XMLHttpRequest();
@@ -58,41 +63,75 @@ function sendData( data ) {
     var hasAmount = !!(response.formated_amount && response.formated_amount !== '')
     const qrcode = document.querySelector('.js-qrcode-replace');
 
-    qrcode.innerHTML = `<img alt="QRCode Gerado a partir dos dados fornecidos" class="mx-auto" src="` + response.qrcode_base64 + `"><span> <a download="qrcode-pix" class="px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150" href="` + response.qrcode_base64 + `" >Baixar QrCode</a></span>`;
+    qrcode.innerHTML =
+      `<img alt="QRCode Gerado a partir dos dados fornecidos"
+            class="mx-auto print:w-84" src="${response.qrcode_base64}">
+        <span>
+          <a download="qrcode-pix"
+             class="${download_button_style}" href="${response.qrcode_base64}">
+             Baixar QrCode
+          </a>
+        </span>`;
 
 
     const qrcodeDescription = document.querySelector('.js-qr-code-description');
+    var pixDetails = ""
 
-    var description =  "Chave PIX: " + response.key;
-
-    if (hasAmount) {
-      description += "<br>Valor: " + response.amount;
-    }
+    pixDetails +=  `<li><span class="font-bold">Chave PIX:</span> ${response.key}</li>`;
 
     if (response.name) {
-      description += "<br>Nome: " + response.name;
+      pixDetails += `<li><span class="font-bold">Nome:</span> ${response.name}</li>`;
     }
 
-    if (response.city) {
-      description += "<br>Cidade: " + response.city;
+    if (response.key_type && response.key_type != "Outro") {
+      pixDetails += `<li><span class="font-bold">Tipo de Chave:</span> ${response.key_type}</li>`;
+    }
+
+    if (hasAmount) {
+      pixDetails += `<li class="mt-5"><span class="font-bold">Valor:</span> ${response.amount}</li>`;
     }
 
     if (response.reference) {
-      description += "<br>Referência: " + response.reference;
+      pixDetails += `<li><span class="font-bold">Código da transferência:</span> ${response.reference}</li>`;
     }
 
-    description += "<br>Código QrCode: <button class='underline text-sm js-qrcode-show-and-copy' data-clipboard-target='#copy-qrcode-code-show-full'>mostrar e copiar</button><span id='copy-qrcode-code-show-full' class='js-show-qrcode-code hidden break-words mt-5 text-sm font-semibold block'>" + response.code + "</span>";
+    var description = `
+      <ul class="mt-5 mb-5 print:mt-0 space-y-1">
+        ${pixDetails}
+      </ul>
+      <div class="print:hidden">
+        <span class="mt-10">Código QrCode:</span>
+          <button class='underline text-sm mb-5 js-qrcode-show-and-copy'
+            data-clipboard-target='#copy-qrcode-code-show-full'>
+              mostrar e copiar
+          </button>
+        <span id='copy-qrcode-code-show-full'
+          class='js-show-qrcode-code hidden break-words
+            mb-5 text-sm font-semibold block'>${response.code}
+        </span>
+
+        <button class='js-print-qrcode underline text-sm mb-5'>
+            Imprimir plaquinha pix
+        </button>
+
+      </div>`;
 
     qrcodeDescription.innerHTML = description;
 
     qrcode.focus();
 
     var showCodeBtn = document.querySelector('.js-qrcode-show-and-copy');
+    var printCodeBtn = document.querySelector('.js-print-qrcode');
 
     var clipboard = new ClipboardJS('.js-qrcode-show-and-copy');
 
     clipboard.on('success', function(e) {
       e.clearSelection();
+    });
+
+    printCodeBtn.addEventListener('click', function() {
+      window.print();
+      return false;
     });
 
     showCodeBtn.addEventListener('click', function() {

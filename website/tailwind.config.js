@@ -14,7 +14,11 @@ module.exports = {
       width: {
         '72': "18rem",
         '84': '21rem',
-        '96': '24rem'
+        '96': '24rem',
+        'plaquinha-pix': '32rem'
+      },
+      screens: {
+        'print': {'raw': 'print'},
       }
     },
   },
