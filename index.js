@@ -1,17 +1,18 @@
-var express = require('express')
-  , bodyParser = require('body-parser')
-  , helmet = require('helmet')
-  , BrCode = require('./lib/br_code')
-  , pino = require('pino-http')()
-  , exphbs  = require('express-handlebars')
-  , fs = require('fs')
-  , path = require('path')
-  , QRCode = require('qrcode')
+import express from 'express'
+import bodyParser from 'body-parser'
+import helmet from 'helmet'
+import pino from 'pino-http'
+import exphbs from 'express-handlebars'
+import fs from 'fs'
+import path from 'path'
+import QRCode from 'qrcode'
+import BrCode from './lib/br_code.js';
+import HTMLParser from 'node-html-parser';
 
 const app = express();
 
 app.use(helmet());
-app.use(pino);
+app.use(pino());
 app.use(bodyParser.json());
 app.use(express.static('website/public'))
 app.engine('handlebars', exphbs());
@@ -20,7 +21,6 @@ app.set('view engine', 'handlebars');
 const port = process.env.PORT || 8000;
 const QR_CODE_SIZE = 400;
 const article_links = []
-var HTMLParser = require('node-html-parser');
 
 const contentSecurityPolicy = [
   "script-src 'self' 'nonce-2726c7f26c' www.googletagmanager.com",
@@ -54,7 +54,7 @@ app.post('/emvqr-static', (req, res) => {
   var { key, amount, name, reference, key_type, city } = req.body
 
   if (key) {
-      const brCode = new BrCode(key, amount, name, reference, key_type, city);
+      var brCode = new BrCode(key, amount, name, reference, key_type, city);
 
       var code = brCode.generate_qrcp()
 
