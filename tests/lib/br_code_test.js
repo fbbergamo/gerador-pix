@@ -17,7 +17,6 @@ test('brCode.generate_qrcp() amount empty', () => {
    assert.equal(code,
      "00020126330014BR.GOV.BCB.PIX0111333333333445204000053039865802BR5906tester6002Sp62070503***63048EB1",
      'check qrcode using cpf with empty money');
-
   assert.equal(brCode.formated_amount(), "")
 });
 

@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx uvu  tests",
+    "test": "npx uvu tests",
     "start": "node index.js",
-    "postinstall": "cd website && npm install && node_modules/.bin/webpack --mode production"
+    "postinstall": "npx uvu tests && cd website && npm install && node_modules/.bin/webpack --mode production"
   },
   "author": "",
   "type": "module",

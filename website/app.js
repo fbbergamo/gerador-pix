@@ -59,6 +59,7 @@ function sendData( data ) {
   request.open("POST", "/emvqr-static");
   request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   request.onload = function (body) {
+
     var response = JSON.parse(body.target.response)
     var hasAmount = !!(response.formated_amount && response.formated_amount !== '')
     const qrcode = document.querySelector('.js-qrcode-replace');
@@ -120,6 +121,10 @@ function sendData( data ) {
 
     qrcode.focus();
 
+    gtag("event", "generate_qr_code", {
+      'hasAmount' : hasAmount
+    });
+
     var showCodeBtn = document.querySelector('.js-qrcode-show-and-copy');
     var printCodeBtn = document.querySelector('.js-print-qrcode');
 
@@ -130,19 +135,19 @@ function sendData( data ) {
     });
 
     printCodeBtn.addEventListener('click', function() {
+      gtag("event", "print_pix", {});
+
       window.print();
       return false;
     });
 
     showCodeBtn.addEventListener('click', function() {
+      gtag("event", "copy_and_paste_pix", {});
+
       var showCode = document.querySelector('.js-show-qrcode-code');
       showCode.classList.remove("hidden");
     });
 
-    window.dataLayer.push({
-    	'event' : 'generate_qr_code',
-    	'hasAmount' : hasAmount
-    });
 
     const qrcodeContainer = document.querySelector('.js-qr-code-container');
 
@@ -174,8 +179,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  window.dataLayer = window.dataLayer || [];
-
   const btn = document.querySelector('.js-trigger-qr-code');
 
   if (btn) {
