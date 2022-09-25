@@ -23,7 +23,7 @@ const QR_CODE_SIZE = 400;
 const article_links = []
 
 const contentSecurityPolicy = [
-  "script-src 'self' 'nonce-2726c7f26c' www.googletagmanager.com",
+  "script-src 'self' 'nonce-2726c7f26c' www.googletagmanager.com pagead2.googlesyndication.com",
 ].join(";");
 
 app.use((req, res, next) => {
