@@ -72,6 +72,9 @@ function sendData( data ) {
              class="${download_button_style}" href="${response.qrcode_base64}">
              Baixar QrCode
           </a>
+          <button class='js-print-qrcode print:hidden underline text-lg font-bold mt-5 mb-5'>
+              Imprimir plaquinha pix
+          </button>
         </span>`;
 
 
@@ -101,19 +104,18 @@ function sendData( data ) {
         ${pixDetails}
       </ul>
       <div class="print:hidden">
-        <span class="mt-10">Código QrCode:</span>
+        <span class="mt-10 block">Código QrCode:</span>
           <button class='underline text-sm mb-5 js-qrcode-show-and-copy'
             data-clipboard-target='#copy-qrcode-code-show-full'>
               mostrar e copiar
           </button>
+
         <span id='copy-qrcode-code-show-full'
           class='js-show-qrcode-code hidden break-words
             mb-5 text-sm font-semibold block'>${response.code}
         </span>
 
-        <button class='js-print-qrcode underline text-sm mb-5'>
-            Imprimir plaquinha pix
-        </button>
+
 
       </div>`;
 
