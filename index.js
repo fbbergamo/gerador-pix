@@ -35,7 +35,7 @@ fs.readdirSync('views/articles/').forEach(file => {
   var path_article = file.replace(/\.[^/.]+$/, "")
 
   app.get("/" + path_article, function(req, res) {
-    res.render("articles/" + path_article, { article: true});
+    res.render("articles/" + path_article, { article: true, google_public_id: process.env.google_public_id, publisher_public_id: process.env.publisher_public_id});
   });
 
   var data = fs.readFileSync('views/articles/' + file);
@@ -47,7 +47,7 @@ fs.readdirSync('views/articles/').forEach(file => {
 });
 
 app.get('/', function(req, res) {
-  res.render('index', {article_links: article_links});
+  res.render('index', {article_links: article_links, google_public_id: process.env.google_public_id, publisher_public_id: process.env.publisher_public_id});
 });
 
 app.post('/emvqr-static', (req, res) => {
