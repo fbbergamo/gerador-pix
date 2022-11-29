@@ -52,7 +52,7 @@ const download_button_style = `px-4 py-2 border border-transparent
   text-base leading-6 font-medium rounded-md text-white bg-indigo-600
   hover:bg-indigo-500 focus:outline-none focus:border-indigo-700
   focus:shadow-outline-indigo active:bg-indigo-700 transition
-  ease-in-out duration-150 print:hidden`
+  ease-in-out duration-150 print:hidden w-1/2`
 
 function sendData( data ) {
   var request = new XMLHttpRequest();
@@ -67,7 +67,7 @@ function sendData( data ) {
     qrcode.innerHTML =
       `<img alt="QRCode Gerado a partir dos dados fornecidos"
             class="mx-auto print:w-84" src="${response.qrcode_base64}">
-        <span>
+        <div class="flex flex-col items-center">
           <a download="qrcode-pix"
              class="${download_button_style}" href="${response.qrcode_base64}">
              Baixar QrCode
@@ -75,7 +75,11 @@ function sendData( data ) {
           <button class='js-print-qrcode print:hidden underline text-lg font-bold mt-5 mb-5'>
               Imprimir plaquinha pix
           </button>
-        </span>`;
+            <h3><a href="https://amzn.to/3EOW2Ux" target="_blank" class="underline print:hidden">Comprar Placa de Acrílico</a></h3>
+            <div class="text-center mt-5 mb-5 print:hidden">
+              <iframe sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin" style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=BR&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=homemade07d-20&language=pt_BR&marketplace=amazon&region=BR&placement=B094DTT19H&asins=B094DTT19H&linkId=bb9ac53d73ba8112ee16b05081edc94d&show_border=true&link_opens_in_new_window=true"></iframe>
+            </div>
+        </div>`;
 
 
     const qrcodeDescription = document.querySelector('.js-qr-code-description');
@@ -104,7 +108,7 @@ function sendData( data ) {
         ${pixDetails}
       </ul>
       <div class="print:hidden">
-        <span class="mt-10 block">Código QrCode:</span>
+        <span class="mt-10 block">Código QrCode (Copia e Cola):</span>
           <button class='underline text-sm mb-5 js-qrcode-show-and-copy'
             data-clipboard-target='#copy-qrcode-code-show-full'>
               mostrar e copiar
@@ -114,9 +118,6 @@ function sendData( data ) {
           class='js-show-qrcode-code hidden break-words
             mb-5 text-sm font-semibold block'>${response.code}
         </span>
-
-
-
       </div>`;
 
     qrcodeDescription.innerHTML = description;
