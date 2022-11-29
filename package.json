@@ -7,12 +7,15 @@
     "start": "node index.js",
     "postinstall": "npx uvu tests && cd website && npm install && node_modules/.bin/webpack --mode production"
   },
+  "engines": {
+    "node": "^16.14.2",
+    "npm": "^8.5.0"
+  },
   "author": "",
   "type": "module",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
-    "terser": ">=5.14.2",
     "express-handlebars": "^5.3.2",
     "helmet": "^4.6.0",
     "node-html-parser": "^2.2.1",
@@ -20,7 +23,8 @@
     "pino-http": "^6.6.0",
     "qrcode": "^1.4.4",
     "steplix-emv-qrcps": "0.0.8",
-    "string-strip-html": "^9.1.7"
+    "string-strip-html": "^9.1.7",
+    "terser": ">=5.14.2"
   },
   "keywords": [],
   "description": "",
