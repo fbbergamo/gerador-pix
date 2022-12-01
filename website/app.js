@@ -75,7 +75,7 @@ function sendData( data ) {
           <button class='js-print-qrcode print:hidden underline text-lg font-bold mt-5 mb-5'>
               Imprimir plaquinha pix
           </button>
-            <h3><a href="https://amzn.to/3EOW2Ux" target="_blank" class="underline print:hidden">Comprar Placa de Acrílico</a></h3>
+            <h3><a href="https://amzn.to/3EOW2Ux" target="_blank" class="underline print:hidden">Comprar Placa de Acrílico na Amazon.com.br</a></h3>
             <div class="text-center mt-5 mb-5 print:hidden">
               <iframe sandbox="allow-popups allow-scripts allow-modals allow-forms allow-same-origin" style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=BR&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=homemade07d-20&language=pt_BR&marketplace=amazon&region=BR&placement=B094DTT19H&asins=B094DTT19H&linkId=bb9ac53d73ba8112ee16b05081edc94d&show_border=true&link_opens_in_new_window=true"></iframe>
             </div>
