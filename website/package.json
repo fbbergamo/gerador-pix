@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:dev": "webpack --config webpack.config.js --mode development"
+    "build:dev": "webpack --config webpack.config.js --mode development",
+    "start": "npx webpack --mode development --watch"
   },
   "license": "ISC",
   "dependencies": {

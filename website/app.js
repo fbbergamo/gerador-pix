@@ -58,7 +58,7 @@ const download_button_style = `px-4 py-2 border border-transparent
   focus:shadow-outline-indigo active:bg-indigo-700 transition
   ease-in-out duration-150 print:hidden w-1/2`;
 
-async function sendData(data) {
+async function sendData(form) {
   const data = await fetch("/emvqr-static", {
     method: "POST",
     headers: { "Content-Type": "application/json;charset=UTF-8" },
@@ -149,7 +149,7 @@ async function sendData(data) {
 
   const qrcodeContainer = document.querySelector(".js-qr-code-container");
   qrcodeContainer.scrollIntoView();
-  request.send(JSON.stringify(data));
+  request.send(JSON.stringify(form));
 }
 
 const serializeForm = function (form) {

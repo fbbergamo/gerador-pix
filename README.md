@@ -30,19 +30,19 @@ npm install
 4. Execute o servidor de desenvolvimento com o comando abaixo, isso irá iniciar o servidor de desenvolvimento em `http://localhost:3000`.
 
 ```
-npm start
+npm run start
 ```
 
 5. Para a página estática, execute os comandos abaixo:
 
 ```
 cd website
-npx webpack --mode development  --watch
+npm run start
 ```
 
 6. Acesse o aplicativo no navegador:
 
-Abra o navegador e acesse `http://localhost:3000`. Você deve ver a página inicial do aplicativo.
+Abra o navegador e acesse `http://localhost:8000`. Você deve ver a página inicial do aplicativo.
 
 7. Personalize o código QR:
 
