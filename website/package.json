@@ -1,13 +1,10 @@
 {
   "name": "website",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "build:dev": "webpack --config webpack.config.js --mode development"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^3.1.3",
