@@ -61,11 +61,12 @@ const download_button_style = `px-4 py-2 border border-transparent
 async function sendData(form) {
   const data = await fetch("/emvqr-static", {
     method: "POST",
+    body: form,
     headers: { "Content-Type": "application/json;charset=UTF-8" },
   });
 
   const response = await data.json();
-  const hasAmount = !!response.formated_amount && !!response.formated_amount;
+  const hasAmount = !!response.formated_amount;
   const qrcode = document.querySelector(".js-qrcode-replace");
   qrcode.innerHTML = `
     <img alt="QRCode Gerado a partir dos dados fornecidos"
