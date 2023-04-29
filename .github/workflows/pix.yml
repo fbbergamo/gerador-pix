@@ -1,4 +1,4 @@
-name: hg-js CI
+name: gerador-pix CI
 
 on:
   push:
