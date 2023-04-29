@@ -12,25 +12,23 @@
   @apply mb-2 text-lg text-blue-700 font-bold mt-2;
 }
 
-.article__content  p {
+.article__content p {
   @apply mt-2 mb-2;
   text-align: justify;
 }
 
-.article__content  p a {
+.article__content p a {
   @apply underline;
 }
 
 @media print {
-  @page
-  {
-      size:  auto;   /* auto is the initial value */
-      margin: 0mm;  /* this affects the margin in the printer settings */
+  @page {
+    size: auto; /* auto is the initial value */
+    margin: 0mm; /* this affects the margin in the printer settings */
   }
 
-  html
-  {
-      background-color: #FFFFFF;
-      margin: 0px;  /* this affects the margin on the html before sending to printer */
+  html {
+    background-color: #ffffff;
+    margin: 0px; /* this affects the margin on the html before sending to printer */
   }
 }
